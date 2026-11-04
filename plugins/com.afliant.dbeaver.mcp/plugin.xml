@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+  <extension point="org.eclipse.ui.commands">
+    <category id="com.afliant.dbeaver.mcp.category" name="MCP Server"/>
+    <command id="com.afliant.dbeaver.mcp.start" name="Start MCP Server" categoryId="com.afliant.dbeaver.mcp.category"/>
+    <command id="com.afliant.dbeaver.mcp.stop" name="Stop MCP Server" categoryId="com.afliant.dbeaver.mcp.category"/>
+    <command id="com.afliant.dbeaver.mcp.status" name="Server Status" categoryId="com.afliant.dbeaver.mcp.category"/>
+    <command id="com.afliant.dbeaver.mcp.copyConfig" name="Copy Client Configuration..." categoryId="com.afliant.dbeaver.mcp.category"/>
+  </extension>
+
+  <extension point="org.eclipse.ui.handlers">
+    <handler commandId="com.afliant.dbeaver.mcp.start" class="com.afliant.dbeaver.mcp.ui.StartServerHandler"/>
+    <handler commandId="com.afliant.dbeaver.mcp.stop" class="com.afliant.dbeaver.mcp.ui.StopServerHandler"/>
+    <handler commandId="com.afliant.dbeaver.mcp.status" class="com.afliant.dbeaver.mcp.ui.StatusHandler"/>
+    <handler commandId="com.afliant.dbeaver.mcp.copyConfig" class="com.afliant.dbeaver.mcp.ui.CopyConfigHandler"/>
+  </extension>
+
+  <extension point="org.eclipse.ui.menus">
+    <menuContribution allPopups="false" locationURI="menu:org.eclipse.ui.main.menu?before=window">
+      <menu id="com.afliant.dbeaver.mcp.menu" label="MCP">
+        <command commandId="com.afliant.dbeaver.mcp.start"/>
+        <command commandId="com.afliant.dbeaver.mcp.stop"/>
+        <command commandId="com.afliant.dbeaver.mcp.status"/>
+        <separator name="config" visible="true"/>
+        <command commandId="com.afliant.dbeaver.mcp.copyConfig"/>
+        <command commandId="org.eclipse.ui.window.preferences" label="Preferences...">
+          <parameter name="preferencePageId" value="com.afliant.dbeaver.mcp.preferences"/>
+        </command>
+      </menu>
+    </menuContribution>
+  </extension>
+
+  <extension point="org.eclipse.ui.preferencePages">
+    <page id="com.afliant.dbeaver.mcp.preferences"
+          category="org.jkiss.dbeaver.preferences.main"
+          class="com.afliant.dbeaver.mcp.ui.PrefPageMcp"
+          name="MCP Server"/>
+  </extension>
+
+</plugin>

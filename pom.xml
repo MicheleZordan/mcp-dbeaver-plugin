@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.afliant.dbeaver</groupId>
+  <artifactId>dbeaver-mcp-parent</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>DBeaver MCP Server (parent)</name>
+
+  <properties>
+    <tycho.version>5.0.4</tycho.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <modules>
+    <module>plugins/com.afliant.dbeaver.mcp</module>
+    <module>features/com.afliant.dbeaver.mcp.feature</module>
+    <module>releng/repository</module>
+  </modules>
+
+  <profiles>
+    <profile>
+      <id>host-macos</id>
+      <activation><os><family>mac</family></os></activation>
+      <properties><osgi.os>macosx</osgi.os><osgi.ws>cocoa</osgi.ws></properties>
+    </profile>
+    <profile>
+      <id>host-linux</id>
+      <activation><os><family>unix</family><name>Linux</name></os></activation>
+      <properties><osgi.os>linux</osgi.os><osgi.ws>gtk</osgi.ws></properties>
+    </profile>
+    <profile>
+      <id>host-windows</id>
+      <activation><os><family>windows</family></os></activation>
+      <properties><osgi.os>win32</osgi.os><osgi.ws>win32</osgi.ws></properties>
+    </profile>
+    <profile>
+      <id>host-aarch64</id>
+      <activation><os><arch>aarch64</arch></os></activation>
+      <properties><osgi.arch>aarch64</osgi.arch></properties>
+    </profile>
+    <profile>
+      <id>host-x86_64</id>
+      <activation><os><arch>x86_64</arch></os></activation>
+      <properties><osgi.arch>x86_64</osgi.arch></properties>
+    </profile>
+    <profile>
+      <id>host-amd64</id>
+      <activation><os><arch>amd64</arch></os></activation>
+      <properties><osgi.arch>x86_64</osgi.arch></properties>
+    </profile>
+  </profiles>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <!-- The target platform is the locally installed DBeaver; override with -Ddbeaver.home=... -->
+          <target>
+            <file>${maven.multiModuleProjectDirectory}/releng/dbeaver.target</file>
+          </target>
+          <!-- Must match the installed DBeaver (SWT fragment). Detected from the build host; override with -Dosgi.os/-Dosgi.ws/-Dosgi.arch -->
+          <environments>
+            <environment>
+              <os>${osgi.os}</os>
+              <ws>${osgi.ws}</ws>
+              <arch>${osgi.arch}</arch>
+            </environment>
+          </environments>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

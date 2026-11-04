@@ -1,0 +1,14 @@
+# Throwaway MySQL for testing the plugin. Test-only credentials.
+services:
+  mysql:
+    image: mysql:latest
+    container_name: dbeaver-mcp-test-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mcp-test-root
+      MYSQL_DATABASE: mcptest
+      MYSQL_USER: mcp
+      MYSQL_PASSWORD: mcp-test
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./seed:/docker-entrypoint-initdb.d:ro

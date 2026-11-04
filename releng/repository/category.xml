@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+  <feature id="com.afliant.dbeaver.mcp.feature">
+    <category name="mcp"/>
+  </feature>
+  <category-def name="mcp" label="DBeaver MCP Server"/>
+</site>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="com.afliant.dbeaver.mcp.feature" label="DBeaver MCP Server" version="0.1.0.qualifier" provider-name="Afliant">
+  <description>Exposes the connections configured in DBeaver to MCP clients (Claude Code, Claude Desktop, Cursor) with read-only enforcement.</description>
+  <copyright>Copyright (c) Afliant</copyright>
+  <license>Apache License, Version 2.0</license>
+  <plugin id="com.afliant.dbeaver.mcp" version="0.0.0"/>
+</feature>

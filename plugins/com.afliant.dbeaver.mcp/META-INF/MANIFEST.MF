@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DBeaver MCP Server
+Bundle-SymbolicName: com.afliant.dbeaver.mcp;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: Afliant
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: com.afliant.dbeaver.mcp.McpPlugin
+Automatic-Module-Name: com.afliant.dbeaver.mcp
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.jface,
+ org.jkiss.utils,
+ org.jkiss.dbeaver.model,
+ org.jkiss.dbeaver.model.sql,
+ org.jkiss.dbeaver.model.jdbc,
+ org.jkiss.dbeaver.ui,
+ com.google.gson,
+ com.github.jsqlparser
+Import-Package: com.sun.net.httpserver
